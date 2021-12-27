@@ -38,8 +38,47 @@ jobs:
 
 ## Process
 
-### 1. create yaml file
+### 1. create yaml file in .github/workflows and commit (make a brench).
 
+```
+name: model-wine-quality
+on: [push]
+jobs:
+  run:
+    runs-on: [ubuntu-latest]
+    container: docker://dvcorg/cml-py3:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: cml_run
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Your ML workflow goes here
+          pip install -r requirements.txt
+          python train.py
+          
+          echo "## Model metrics" > report.md
+          cat metrics.txt >> report.md
+          
+          echo "## Data viz" >> report.md
+          cml-publish feature_importance.png --md >> report.md
+          cml-publish residuals.png --md >> report.md
+          
+          cml-send-comment report.md
+```
+
+### 2. Check your commit in pull & requests
+
+![image](https://user-images.githubusercontent.com/53808221/147482367-d74aed95-9a46-4138-bec7-c0d62be432cc.png)
+
+
+### 3. Check your results in Actions.
+
+### 4. Try to change your train code and re-commit.
+
+ex) depth 2 -> 4 in train.py
+
+![image](https://user-images.githubusercontent.com/53808221/147482399-69668c9c-3486-490d-bc5e-c7350bc401c2.png)
 
 
 - reference
