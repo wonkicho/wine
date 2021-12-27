@@ -74,11 +74,17 @@ jobs:
 
 ### 3. Check your results in Actions.
 
+![image](https://user-images.githubusercontent.com/53808221/147482485-c85f1dda-2fc2-471b-9c68-a491ddbc33e9.png)
+
 ### 4. Try to change your train code and re-commit.
 
 ex) depth 2 -> 4 in train.py
 
 ![image](https://user-images.githubusercontent.com/53808221/147482399-69668c9c-3486-490d-bc5e-c7350bc401c2.png)
+
+### 5. Merge
+
+if you sure this code is better than previous code, merge this code in master branch.
 
 
 - reference
